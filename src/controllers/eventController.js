@@ -23,7 +23,7 @@ const createEvent = async (req, res) => {
 const showEvent = async (req, res) => {
   try {
     const event = await eventService.getEventById(req.params.id);
-    if (!event) return res.status(404).send('Event not found');
+    if (!event.id) return res.status(404).send('Event not found');
     res.json(event);
   } catch (err) {
     console.error(err);
@@ -33,8 +33,10 @@ const showEvent = async (req, res) => {
 
 const voteEvent = async (req, res) => {
   try {
+    const event = await eventService.getEventById(req.params.id);
+    if (!event.id) return res.status(404).send('Event not found');
+    
     const updatedEvent = await eventService.addVoteToEvent(req.params.id, req.body);
-    if (!updatedEvent) return res.status(404).send('Event not found');
     res.status(201).json(updatedEvent);
   } catch (err) {
     console.error(err);
@@ -44,8 +46,10 @@ const voteEvent = async (req, res) => {
 
 const showVotingResults = async (req, res) => {
   try {
+    const event = await eventService.getEventById(req.params.id);
+    if (!event.id) return res.status(404).send('Event not found');
+    
     const votes = await eventService.getEventVotes(req.params.id);
-    if (!votes) return res.status(404).send('Event not found');
     res.json(votes);
   } catch (err) {
     console.error(err);

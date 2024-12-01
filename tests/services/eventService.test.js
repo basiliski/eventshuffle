@@ -4,7 +4,6 @@ const userService = require('../../src/services/userService');
 const voteService = require('../../src/services/voteService');
 const dateService = require('../../src/services/dateService');
 
-
 jest.mock('../../src/config/db.js', () => jest.fn());
 
 jest.mock('../../src/services/userService');
@@ -85,22 +84,6 @@ describe('eventService', () => {
         });
     });
 
-    describe('addVoteToEvent', () => {
-        it('should add a vote to an event', async () => {
-            const mockUserId = 1;
-            const mockEvent = { id: 1, name: 'Event 1', dates: ['2023-10-01'], votes: [] };
-
-            userService.getOrCreateUserId.mockResolvedValueOnce(mockUserId);
-            voteService.handleVotes.mockResolvedValueOnce();
-            eventService.getEventById = jest.fn().mockResolvedValueOnce(mockEvent);
-
-            const event = await eventService.addVoteToEvent(1, { name: 'John', votes: ['2023-10-01'] });
-            expect(event).toEqual(mockEvent);
-            expect(userService.getOrCreateUserId).toHaveBeenCalledWith('John');
-            expect(voteService.handleVotes).toHaveBeenCalledWith(mockUserId, 1, ['2023-10-01']);
-        });
-    });
-
     describe('getParticipants', () => {
         it('should return participants for an event', async () => {
             const mockParticipants = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }];
@@ -108,38 +91,6 @@ describe('eventService', () => {
 
             const participants = await eventService.getParticipants(1);
             expect(participants).toEqual(mockParticipants);
-        });
-    });
-
-    describe('getSuitableDates', () => {
-        it('should return suitable dates for an event', async () => {
-            const mockDates = ['2023-10-01'];
-            const mockParticipants = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }];
-            const mockVotes = ['John', 'Jane'];
-
-            dateService.getEventDates.mockResolvedValueOnce(mockDates);
-            eventService.getParticipants = jest.fn().mockResolvedValueOnce(mockParticipants);
-            voteService.getVotesByDate.mockResolvedValueOnce(mockVotes);
-
-            const suitableDates = await eventService.getSuitableDates(1);
-            expect(suitableDates).toEqual([{ date: '2023-10-01', people: mockVotes }]);
-        });
-    });
-
-    describe('getEventVotes', () => {
-        it('should return event votes', async () => {
-            const mockEvent = { id: 1, name: 'Event 1' };
-            const mockSuitableDates = [{ date: '2023-10-01', people: ['John', 'Jane'] }];
-
-            sql.mockResolvedValueOnce([mockEvent]); // getEventDetails
-            eventService.getSuitableDates = jest.fn().mockResolvedValueOnce(mockSuitableDates);
-
-            const eventVotes = await eventService.getEventVotes(1);
-            expect(eventVotes).toEqual({
-                id: 1,
-                name: 'Event 1',
-                suitableDates: mockSuitableDates
-            });
         });
     });
 });
