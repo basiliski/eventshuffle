@@ -1,6 +1,8 @@
 # EventShuffle
 
-EventShuffle is a web application that allows users to create events, vote on suitable dates, and view the results.
+![ci workflow status](https://github.com/basiliski/eventshuffle/actions/workflows/ci.yml/badge.svg)
+
+EventShuffle is a backend for web application that allows users to create events, vote on suitable dates, and view the results.
 
 ## Getting Started
 
@@ -13,7 +15,7 @@ EventShuffle is a web application that allows users to create events, vote on su
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/eventshuffle.git
+    git clone https://github.com/basiliski/eventshuffle.git
     cd eventshuffle
     ```
 
@@ -41,18 +43,18 @@ This will start both the PostgreSQL database and the backend service. The backen
 To start the database using Docker and the backend with `npm start`, follow these steps:
 
 1. Start the database service using Docker Compose:
-    ```sh
-    docker-compose up -d postgres
-    ```
+```sh
+docker-compose up -d postgres
+```
 
 2. Start the backend service:
-    ```sh
-    npm start
-    ```
-    Or in start in dev mode that auto reloads after changes:
-    ```sh
-    npm run dev
-    ```
+```sh
+npm start
+```
+Or start in dev mode that auto reloads after changes:
+```sh
+npm run dev
+```
 
 ### Initializing the Database
 
@@ -70,7 +72,6 @@ npm test
 This will run all the tests using Jest.
 
 ## API Endpoints
-
 ### Create Event
 ```http
 POST /api/v1/event
