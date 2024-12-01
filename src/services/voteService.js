@@ -50,7 +50,7 @@ async function getVotesByDate(id, date) {
       LEFT JOIN dates d ON d.id = v.date_id 
       WHERE d.event_id = ${id} AND d.date = ${date}
     `;
-    return votes.map(vote => vote.name);
+    return votes ? votes.map(vote => vote.name) : [];
 }
   
 async function getVotesForEvent(eventId) {

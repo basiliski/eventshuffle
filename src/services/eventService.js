@@ -3,7 +3,6 @@ const userService = require('./userService.js');
 const voteService = require('./voteService.js');
 const dateService = require('./dateService.js');
 
-
 async function getAllEvents() {
   const events = await sql`
     SELECT *
@@ -18,7 +17,6 @@ async function eventExists(name) {
   `;
   return event;
 }
-
 
 async function createEvent(eventData) {
   const { name, dates } = eventData;
@@ -82,7 +80,7 @@ async function getParticipants(eventId) {
     JOIN dates d ON v.date_id = d.id
     WHERE d.event_id = ${eventId}
   `;
-  return participants;
+  return participants || [];
 }
 
 async function getSuitableDates(eventId) {
@@ -116,8 +114,12 @@ async function getEventVotes(id) {
 
 module.exports = {
   getAllEvents,
+  eventExists,
   createEvent,
+  getEventDetails,
   getEventById,
   addVoteToEvent,
+  getParticipants,
+  getSuitableDates,
   getEventVotes
 };

@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "init-db": "dotenv -e .env -- sh -c 'docker cp src/config/init.sql eventshuffle-postgres-1:/init.sql && docker exec -i eventshuffle-postgres-1 psql -U $POSTGRES_USER -d $POSTGRES_DB -f /init.sql'"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,8 @@
     "postgres": "^3.4.5"
   },
   "devDependencies": {
+    "dotenv-cli": "^7.4.4",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7"
   }
 }
