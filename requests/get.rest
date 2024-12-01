@@ -7,4 +7,4 @@ GET http://localhost:{{port}}/api/v1/event/list
 GET http://localhost:{{port}}/api/v1/event/1/results
 
 ### Show Event
-GET http://localhost:{{port}}/api/v1/event/6
+GET http://localhost:{{port}}/api/v1/event/1

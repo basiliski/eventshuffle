@@ -60,3 +60,23 @@ Content-Type: application/json
         "2023-10-29"
     ]
 }
+
+### Test Create Event - Missing Name
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "dates": [
+        "2023-12-01",
+        "2023-12-02"
+    ]
+}
+
+### Test Create Event - Invalid Date Array
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Invalid date event",
+    "dates": "2023-12-01"
+}
