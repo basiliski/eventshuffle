@@ -12,8 +12,8 @@ const listEvents = async (req, res) => {
 
 const createEvent = async (req, res) => {
   try {
-    const newEvent = await eventService.createEvent(req.body);
-    res.status(201).json({ id: newEvent.id });
+    const newEventId = await eventService.createEvent(req.body);
+    res.status(201).json({ id: newEventId });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

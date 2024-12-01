@@ -1,0 +1,10 @@
+@port = 3002
+
+### List Events
+GET http://localhost:{{port}}/api/v1/event/list
+
+### Show Voting Results
+GET http://localhost:{{port}}/api/v1/event/1/results
+
+### Show Event
+GET http://localhost:{{port}}/api/v1/event/6

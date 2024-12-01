@@ -1,0 +1,62 @@
+@port = 3002
+
+### Test Create Event - Valid Event
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Jake's secret party",
+    "dates": [
+        "2014-01-01",
+        "2014-01-05",
+        "2014-01-12"
+    ]
+}
+
+### Test Create Event - Another Valid Event With Duplicate Dates
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Alice's birthday bash",
+    "dates": [
+        "2022-05-01",
+        "2022-05-02",
+        "2022-05-02"
+    ]
+}
+
+### Test Create Event - Event with Single Date
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Single day conference",
+    "dates": [
+        "2023-11-15"
+    ]
+}
+
+### Test Create Event - Event with No Dates
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Mystery event",
+    "dates": []
+}
+
+### Test Create Event - Event with Multiple Dates
+POST http://localhost:{{port}}/api/v1/event
+Content-Type: application/json
+
+{
+    "name": "Weekly team meeting",
+    "dates": [
+        "2023-10-01",
+        "2023-10-08",
+        "2023-10-15",
+        "2023-10-22",
+        "2023-10-29"
+    ]
+}

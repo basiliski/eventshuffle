@@ -1,0 +1,58 @@
+@port = 3002
+
+### Test Vote Event - Valid Vote
+POST http://localhost:{{port}}/api/v1/event/1/vote
+Content-Type: application/json
+
+{
+    "name": "Dick",
+    "votes": [
+        "2014-01-01",
+        "2014-01-05"
+    ]
+}
+
+### Test Vote Event - Another Valid Vote
+POST http://localhost:{{port}}/api/v1/event/2/vote
+Content-Type: application/json
+
+{
+    "name": "Jane",
+    "votes": [
+        "2014-01-01",
+        "2014-01-12"
+    ]
+}
+
+### Test Vote Event - Single Date Vote
+POST http://localhost:{{port}}/api/v1/event/2/vote
+Content-Type: application/json
+
+{
+    "name": "Alice",
+    "votes": [
+        "2014-01-05"
+    ]
+}
+
+### Test Vote Event - No Votes
+POST http://localhost:{{port}}/api/v1/event/3/vote
+Content-Type: application/json
+
+{
+    "name": "Bob",
+    "votes": []
+}
+
+### Test Vote Event - Multiple Dates Vote
+POST http://localhost:{{port}}/api/v1/event/1/vote
+Content-Type: application/json
+
+{
+    "name": "Charlie",
+    "votes": [
+        "2014-01-01",
+        "2014-01-05",
+        "2014-01-12"
+    ]
+}
